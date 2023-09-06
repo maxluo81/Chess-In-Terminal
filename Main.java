@@ -5,28 +5,29 @@ import java.util.Random;
 /**
  * Chess in Terminal
  *
- * A very bare bones chess game that I made my Junior year of high school.
+ * A very bare bones and industry nonstandard chess game that I made my junior year of high school.
  * Select 2 player or 1 player mode (you play against random moves), and select moves with chess coordinates.
+ * Have fun!
  *
  * @author Max Luo
  * @version May 2022
-**/
+ */
 
 public class Main
 {
-	public static void main(String[] args) 
-	{
+    public static void main(String[] args) 
+    {
 	    Chess chs = new Chess();
-	    Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 	    
-	    final String RESET = "\u001B[0m";
-	    final String[] color = {"\u001B[34m", "\u001B[31m"};
+		final String RESET = "\u001B[0m";
+		final String[] color = {"\u001B[34m", "\u001B[31m"};
 
-	    int win = 0, mode = 0, player = 0, plays = 0;
-	    int pRow, pCol, nRow, nCol;
-	    String add = "", notation = "";
+		int win = 0, mode = 0, player = 0, plays = 0;
+    	int pRow, pCol, nRow, nCol;
+		String add = "", notation = "";
 
-	    String input = "xx", prom = "x";
+		String input = "xx", prom = "x";
         String[] name = {"blue", "red"};
         String[] piecesOf = {"P R N B Q K", "p r n b q k"};
         
@@ -63,40 +64,40 @@ public class Main
                 {
                     while(true)
                     {
-                		System.out.print("Enter location of piece (a-h)(1-8): ");
-                		input = sc.nextLine();
-                		
-                		if(input.length() != 2)
-                		{
-                		    System.out.println(RESET + "\nInvalid: incorrect # of inputs\n" + color[player]);
-                		}
-                		else
-                		{
-    		                pRow = 8 - ((int)(input.charAt(1)) - 48);
-                		    pCol = chs.abcTO123(input.charAt(0)) - 1;
-                		    if(pRow > 8 || pRow < 0 || pCol > 8 || pCol < 0)
-                    		{
-                    		    System.out.println(RESET + "\nInvalid: out of bounds\n" + color[player]);
-                    		}
-                    		else
-                    		{
-                    		    break;
-                    		}
-                		}
+						System.out.print("Enter location of piece (a-h)(1-8): ");
+						input = sc.nextLine();
+			
+						if(input.length() != 2)
+						{
+			 			    System.out.println(RESET + "\nInvalid: incorrect # of inputs\n" + color[player]);
+						}
+						else
+						{
+							pRow = 8 - ((int)(input.charAt(1)) - 48);
+						    pCol = chs.abcTO123(input.charAt(0)) - 1;
+						    if(pRow > 8 || pRow < 0 || pCol > 8 || pCol < 0)
+							{
+							    System.out.println(RESET + "\nInvalid: out of bounds\n" + color[player]);
+							}
+							else
+							{
+							    break;
+							}
+						}
                     }
                 	
-                	if(player == 0 && chs.isUpper(pRow, pCol) == false || player == 1 && chs.isLower(pRow, pCol) == false)
-                	{
-                	    System.out.println(RESET + "\nInvalid: no " + name[player] + " piece here\n" + color[player]);
-                	}
-                	else if(chs.isPossible(pRow, pCol) == false)
-                	{
-                	    System.out.println(RESET + "\nInvalid: " + chs.pieceTOname(pRow, pCol) + " does not have a move\n" + color[player]);
-                	}
-                	else 
-                	{
-                	    break;
-                	}
+				    if(player == 0 && chs.isUpper(pRow, pCol) == false || player == 1 && chs.isLower(pRow, pCol) == false)
+				    {
+						System.out.println(RESET + "\nInvalid: no " + name[player] + " piece here\n" + color[player]);
+				    }
+				    else if(chs.isPossible(pRow, pCol) == false)
+				    {
+						System.out.println(RESET + "\nInvalid: " + chs.pieceTOname(pRow, pCol) + " does not have a move\n" + color[player]);
+				    }
+				    else 
+			        {
+						break;
+				    }
                 }
                 
                 chs.showMoves(pRow, pCol);
