@@ -1,4 +1,4 @@
-# ChessInTerminal
+# Chess In Terminal
 A project I made junior year of high school.
 
 ### How to play
