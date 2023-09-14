@@ -5,8 +5,7 @@
  * @version May 2022
  */
 
-public class Chess
-{
+public class Chess {
     private char[][] chessBoard = new char[8][8];
     private final int[] whiteEnPassant = new int[8];
     private final int[] blackEnPassant = new int[8];
